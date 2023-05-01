@@ -1,4 +1,5 @@
 #include "paddle.hpp"
+#include "ball.hpp"
 #include "raylib.h"
 #include <iostream>
 
@@ -17,11 +18,13 @@ int main() {
 
     Paddle player1(player1XPos, 1);
     Paddle player2(player2XPos, 2);
+    Ball ball;
 
     while(!WindowShouldClose()) {
         // movement
         player1.move();
         player2.move();
+        ball.move();
 
         // drawing
         BeginDrawing();
