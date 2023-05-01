@@ -31,6 +31,7 @@ int main() {
             ClearBackground(BLACK);
             player1.draw();
             player2.draw();
+            ball.draw();
         EndDrawing();
     }
 
