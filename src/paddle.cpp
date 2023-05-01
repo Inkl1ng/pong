@@ -28,6 +28,6 @@ void Paddle::move() {
 void Paddle::draw() {
     DrawRectangle(xPos - (WIDTH/2), yPos - (HEIGHT/2), WIDTH, HEIGHT, 
         playerNum == 1 ? BLUE : RED);
-    // line above sets the color to either be BLUE or RED based on the player number
-    // 1 for BLUE and 2 for RED
+    // line above sets the color to either be BLUE or RED based on the 
+    // player number, 1 for BLUE and 2 for RED
 }
