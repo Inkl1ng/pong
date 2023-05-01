@@ -4,10 +4,8 @@
 #include <array>
 
 void Ball::move() {
-    double radians { angle * 3.14159 * 180 };
-
-    xPos += speed * std::cos(radians);
-    yPos += speed * std::sin(radians);
+    xPos += xSpeed;
+    yPos += ySpeed;
 }
 
 void Ball::draw() {
