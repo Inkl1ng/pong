@@ -5,6 +5,10 @@
 Paddle::Paddle(int newXPos, int newPlayerNum) {
     xPos = newXPos;
     playerNum = newPlayerNum;
+    rectangle.width = WIDTH;
+    rectangle.height = HEIGHT;
+    
+    playerNum == 1 ? color = BLUE : color = RED;
 }
 
 void Paddle::move() {
@@ -26,8 +30,15 @@ void Paddle::move() {
 }
 
 void Paddle::draw() {
-    DrawRectangle(xPos - (WIDTH/2), yPos - (HEIGHT/2), WIDTH, HEIGHT, 
-        playerNum == 1 ? BLUE : RED);
+    // update rectangle
+    r_rectangle.x = xPos - (WIDTH/2.0);
+    r_rectangle.y = yPos - (HEIGHT/2.0);
+
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED
+    DrawRectangleRec(rectangle, color);
+}
+
+Rectangle& Paddle::getRect() {
+    return r_rectangle;
 }

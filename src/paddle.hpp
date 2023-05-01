@@ -10,6 +10,7 @@ public:
     
     void move();
     void draw();
+    Rectangle& getRect();
 
 private:
     const int WIDTH { 15 };
@@ -19,6 +20,10 @@ private:
     int xPos {};
     int yPos { 400 };
     int playerNum {}; // either 1 or 2, represnets player 1 or 2
+    Color color {};
+
+    Rectangle rectangle;
+    Rectangle& r_rectangle { rectangle };
 };
 
 #endif
