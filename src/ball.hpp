@@ -10,6 +10,7 @@ public:
     void draw();
 
     std::array<int, 2>& getPos();
+    int getRadius();
 
 private:
     const int RADIUS { 12 };
