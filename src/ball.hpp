@@ -2,18 +2,21 @@
 #define BALL_HPP
 
 #include "raylib.h"
-
+#include <array>
 
 class Ball {
 public:
     void move();
     void draw();
 
+    std::array<int, 2>& getPos();
+
 private:
     const int RADIUS { 12 };
 
-    int xPos { 500 };
-    int yPos { 400 };
+    std::array<int, 2> pos { 500, 400 }; // x and y coordinates
+    int& xPos { pos[0] };
+    int& yPos { pos[1] };
     double speed { 12 };
     // angle in degrees
     int angle { 180 };
