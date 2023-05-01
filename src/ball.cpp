@@ -1,6 +1,7 @@
 #include "ball.hpp"
 #include "raylib.h"
 #include <cmath>
+#include <array>
 
 void Ball::move() {
     double radians { angle * 3.14159 * 180 };
@@ -11,4 +12,8 @@ void Ball::move() {
 
 void Ball::draw() {
     DrawCircle(xPos, yPos, RADIUS, WHITE);
+}
+
+std::array<int, 2>& Ball::getPos() {
+    return pos;
 }
