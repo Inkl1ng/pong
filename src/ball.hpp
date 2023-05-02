@@ -20,6 +20,8 @@ private:
 
     Vector2 location { 500, 400 };
     float speed { 10 };
+    float xSpeed {};
+    float ySpeed {};
     float angle { 180 };
 };
 
