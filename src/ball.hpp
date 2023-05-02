@@ -1,6 +1,7 @@
 #ifndef BALL_HPP
 #define BALL_HPP
 
+#include "paddle.hpp"
 #include "raylib.h"
 #include <array>
 
@@ -9,18 +10,17 @@ public:
     void move();
     void draw();
 
-    std::array<int, 2>& getPos();
+    void collision(Paddle& target);
+
+    Vector2& getPos();
     int getRadius();
 
 private:
-    const int RADIUS { 12 };
+    const float RADIUS { 12 };
 
-    std::array<int, 2> pos { 500, 400 }; // x and y coordinates
-    int& xPos { pos[0] };
-    int& yPos { pos[1] };
-
-    double xSpeed { 12 };
-    double ySpeed { 0 };
+    Vector2 location { 500, 400 };
+    float speed { 10 };
+    float angle { 180 };
 };
 
 #endif
