@@ -7,6 +7,8 @@ Paddle::Paddle(float newXPos, int newPlayerNum) {
     
     playerNum == 1 ? color = BLUE : color = RED;
     rectangle = { newXPos, 400 - (HEIGHT/2), WIDTH, HEIGHT };
+
+    score = 0;
 }
 
 void Paddle::move() {

@@ -19,6 +19,7 @@ private:
 
     int playerNum {}; // either 1 or 2, represnets player 1 or 2
     Color color {};
+    int score {};
 
     Rectangle rectangle;
     Rectangle& r_rectangle { rectangle };
