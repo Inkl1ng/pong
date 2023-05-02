@@ -11,6 +11,7 @@ public:
     void draw();
 
     void collision(Paddle& target);
+    bool outOfBounds();
 
     Vector2& getPos();
     int getRadius();

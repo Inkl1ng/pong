@@ -48,6 +48,10 @@ void Ball::collision(Paddle& target) {
     }
 }
 
+bool Ball::outOfBounds() {
+    return (location.x < 0 || location.x > 800);
+}
+
 Vector2& Ball::getPos() {
     return location;
 }
