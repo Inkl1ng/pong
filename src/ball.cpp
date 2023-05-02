@@ -8,6 +8,16 @@ void Ball::move() {
     float radians = angle * 3.14159 / 180;
     location.x += speed * std::cos(radians);
     location.y += speed * std::sin(radians);
+
+    // bounce off the top and bottom boarders of the playfield
+    if (location.y - RADIUS < 0) {
+        location.y = RADIUS;
+        angle = 360 - angle;
+    }
+    if (location.y + RADIUS > 800) {
+        location.y = 800 - RADIUS;
+        angle = 360 - angle;
+    }
 }
 
 void Ball::draw() {
@@ -29,7 +39,7 @@ void Ball::collision(Paddle& target) {
         if (movingRight) {
             angle = 180 + newAngel;
         } else {
-            angle = newAngel;
+            angle = 360 - newAngel;
         }
 
         speed *= 1.05;
