@@ -36,7 +36,7 @@ void Paddle::draw() {
 
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED
-    DrawRectangleRec(rectangle, color);
+    DrawRectangle(location.x, location.y, WIDTH, HEIGHT, color);
 }
 
 Rectangle& Paddle::getRect() {
