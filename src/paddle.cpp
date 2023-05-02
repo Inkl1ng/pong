@@ -3,7 +3,7 @@
 
 
 Paddle::Paddle(int newXPos, int newPlayerNum) {
-    xPos = newXPos;
+    location.x = newXPos;
     playerNum = newPlayerNum;
     rectangle.width = WIDTH;
     rectangle.height = HEIGHT;
@@ -15,24 +15,24 @@ void Paddle::move() {
     // get and register input from player
     switch (playerNum) {
         case 1:
-            if (IsKeyDown(KEY_W)) { yPos -= SPEED; }
-            if (IsKeyDown(KEY_S)) {yPos += SPEED; }
+            if (IsKeyDown(KEY_W)) { location.y -= SPEED; }
+            if (IsKeyDown(KEY_S)) { location.y += SPEED; }
             break;
         case 2:
-            if (IsKeyDown(KEY_UP)) { yPos -= SPEED; }
-            if (IsKeyDown(KEY_DOWN)) { yPos += SPEED; }
+            if (IsKeyDown(KEY_UP)) { location.y -= SPEED; }
+            if (IsKeyDown(KEY_DOWN)) { location.y += SPEED; }
             break;
     }
 
     // prevent player from going out of bounds
-    if (yPos - (HEIGHT/2) < 0) { yPos = (HEIGHT/2); }
-    if (yPos + (HEIGHT/2) > 800) { yPos = 800 - (HEIGHT/2); }
+    if (location.y - (HEIGHT/2) < 0) { location.y = (HEIGHT/2); }
+    if (location.y + (HEIGHT/2) > 800) { location.y = 800 - (HEIGHT/2); }
 }
 
 void Paddle::draw() {
     // update rectangle
-    r_rectangle.x = xPos - (WIDTH/2.0);
-    r_rectangle.y = yPos - (HEIGHT/2.0);
+    r_rectangle.x = location.y - (WIDTH/2);
+    r_rectangle.y = location.y - (HEIGHT/2);
 
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED

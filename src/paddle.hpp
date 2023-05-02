@@ -13,12 +13,11 @@ public:
     Rectangle& getRect();
 
 private:
-    const int WIDTH { 15 };
-    const int HEIGHT { 80 };
+    const float WIDTH { 15.0 };
+    const float HEIGHT { 80.0 };
     const int SPEED { 15 };
 
-    int xPos {};
-    int yPos { 400 };
+    Vector2 location { 500, 360 };
     int playerNum {}; // either 1 or 2, represnets player 1 or 2
     Color color {};
 
