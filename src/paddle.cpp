@@ -38,3 +38,7 @@ void Paddle::draw() {
 Rectangle& Paddle::getRectangle() {
     return r_rectangle;
 }
+
+void Paddle::addPoint() {
+    ++score;
+}

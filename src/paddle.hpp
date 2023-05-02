@@ -12,6 +12,8 @@ public:
     void draw();
     Rectangle& getRectangle();
 
+    void addPoint();
+
 private:
     const float WIDTH { 15.0 };
     const float HEIGHT { 80.0 };
