@@ -5,8 +5,6 @@
 Paddle::Paddle(int newXPos, int newPlayerNum) {
     location.x = newXPos;
     playerNum = newPlayerNum;
-    rectangle.width = WIDTH;
-    rectangle.height = HEIGHT;
     
     playerNum == 1 ? color = BLUE : color = RED;
 }
@@ -30,15 +28,11 @@ void Paddle::move() {
 }
 
 void Paddle::draw() {
-    // update rectangle
-    r_rectangle.x = location.y - (WIDTH/2);
-    r_rectangle.y = location.y - (HEIGHT/2);
-
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED
     DrawRectangle(location.x, location.y, WIDTH, HEIGHT, color);
 }
 
-Rectangle& Paddle::getRect() {
-    return r_rectangle;
+Vector2& Paddle::getLocation() {
+    return location;
 }
