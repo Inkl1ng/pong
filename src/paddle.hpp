@@ -10,7 +10,7 @@ public:
     
     void move();
     void draw();
-    Rectangle& getRect();
+    Vector2& getLocation();
 
 private:
     const float WIDTH { 15.0 };
