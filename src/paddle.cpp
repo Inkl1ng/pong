@@ -2,37 +2,37 @@
 #include <raylib.h>
 
 
-Paddle::Paddle(int newXPos, int newPlayerNum) {
-    location.x = newXPos;
+Paddle::Paddle(float newXPos, int newPlayerNum) {
     playerNum = newPlayerNum;
     
     playerNum == 1 ? color = BLUE : color = RED;
+    rectangle = { newXPos, 400 - (HEIGHT/2), WIDTH, HEIGHT };
 }
 
 void Paddle::move() {
     // get and register input from player
     switch (playerNum) {
         case 1:
-            if (IsKeyDown(KEY_W)) { location.y -= SPEED; }
-            if (IsKeyDown(KEY_S)) { location.y += SPEED; }
+            if (IsKeyDown(KEY_W)) { rectangle.y -= SPEED; }
+            if (IsKeyDown(KEY_S)) { rectangle.y += SPEED; }
             break;
         case 2:
-            if (IsKeyDown(KEY_UP)) { location.y -= SPEED; }
-            if (IsKeyDown(KEY_DOWN)) { location.y += SPEED; }
+            if (IsKeyDown(KEY_UP)) { rectangle.y -= SPEED; }
+            if (IsKeyDown(KEY_DOWN)) { rectangle.y += SPEED; }
             break;
     }
 
     // prevent player from going out of bounds
-    if (location.y - (HEIGHT/2) < 0) { location.y = (HEIGHT/2); }
-    if (location.y + (HEIGHT/2) > 800) { location.y = 800 - (HEIGHT/2); }
+    if (rectangle.y < 0) { rectangle.y = 0; }
+    if (rectangle.y + HEIGHT > 800) { rectangle.y = 800 - HEIGHT; }
 }
 
 void Paddle::draw() {
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED
-    DrawRectangle(location.x, location.y, WIDTH, HEIGHT, color);
+    DrawRectangleRec(rectangle, color);
 }
 
-Vector2& Paddle::getLocation() {
-    return location;
+Rectangle& Paddle::getRectangle() {
+    return r_rectangle;
 }
