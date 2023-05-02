@@ -21,6 +21,10 @@ int main() {
     Ball ball;
 
     while(!WindowShouldClose()) {
+        // collision
+        ball.collision(player1);
+        ball.collision(player2);
+
         // movement
         player1.move();
         player2.move();
