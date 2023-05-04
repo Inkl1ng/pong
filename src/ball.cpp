@@ -49,7 +49,7 @@ void Ball::collision(Paddle& target) {
 }
 
 int Ball::outOfBounds() {
-    bool outOfBounds { location.x < 0 || location.x > 800 };
+    bool outOfBounds { location.x < 0 || location.x > 1000 };
     int playerSide {}; // which side the ball was on when it was scored
 
     if (outOfBounds) {
@@ -59,6 +59,10 @@ int Ball::outOfBounds() {
         // reset location to center of screen
         location.x = 500;
         location.y = 400;
+        
+        // if player 1 scored then send the ball to player 2 and if 
+        // player 2 scored then send the ball to player 1
+        playerSide == 1 ? angle = 180 : angle = 0;
         return playerSide;
     } else {
         return 0;
