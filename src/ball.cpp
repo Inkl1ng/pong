@@ -48,15 +48,21 @@ void Ball::collision(Paddle& target) {
     }
 }
 
-bool Ball::outOfBounds() {
+int Ball::outOfBounds() {
     bool outOfBounds { location.x < 0 || location.x > 800 };
+    int playerSide {}; // which side the ball was on when it was scored
 
     if (outOfBounds) {
+        // playerSide will be 1 or 2 depending on which half of the
+        // playerfield it was on before it was scored
+        location.x < 500 ? playerSide = 1 : playerSide = 2;
         // reset location to center of screen
         location.x = 500;
         location.y = 400;
+        return playerSide;
+    } else {
+        return 0;
     }
-    return outOfBounds;
 }
 
 Vector2& Ball::getPos() {
