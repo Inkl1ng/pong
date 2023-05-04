@@ -49,7 +49,14 @@ void Ball::collision(Paddle& target) {
 }
 
 bool Ball::outOfBounds() {
-    return (location.x < 0 || location.x > 800);
+    bool outOfBounds { location.x < 0 || location.x > 800 };
+
+    if (outOfBounds) {
+        // reset location to center of screen
+        location.x = 500;
+        location.y = 400;
+    }
+    return outOfBounds;
 }
 
 Vector2& Ball::getPos() {
