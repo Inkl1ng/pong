@@ -11,6 +11,7 @@ public:
     void move();
     void draw();
     Rectangle& getRectangle();
+    int getScore();
 
     void addPoint();
 
