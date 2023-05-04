@@ -59,7 +59,9 @@ int Ball::outOfBounds() {
         // reset location to center of screen
         location.x = 500;
         location.y = 400;
-        
+        // reset speed
+        speed = 10;
+
         // if player 1 scored then send the ball to player 2 and if 
         // player 2 scored then send the ball to player 1
         playerSide == 1 ? angle = 180 : angle = 0;
