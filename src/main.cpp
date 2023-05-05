@@ -1,6 +1,7 @@
 #include "paddle.hpp"
 #include "ball.hpp"
 #include "raylib.h"
+#include "text.hpp"
 #include <iostream>
 
 int main() {
@@ -61,20 +62,14 @@ int main() {
 
         // drawing
         BeginDrawing();
-            ClearBackground(WHITE);
+            ClearBackground(BLACK);
             // draw game object
             player1.draw();
             player2.draw();
             ball.draw();
             
             // draw score
-            DrawText(TextFormat("%i", player1.getScore()),
-                     TEXT_OFFSET, TEXT_Y_POS,
-                     TEXT_SIZE, BLUE);
-            DrawText(TextFormat("%i", player2.getScore()),
-                     WIDTH - MeasureText(TextFormat("%i", player2.getScore()),
-                            TEXT_SIZE) - TEXT_OFFSET, TEXT_Y_POS, 
-                     TEXT_SIZE, RED);
+            text::drawScore(player1, player2);
         EndDrawing();
     }
 
