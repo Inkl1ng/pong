@@ -2,24 +2,20 @@
 #include "ball.hpp"
 #include "raylib.h"
 #include "text.hpp"
+#include "constants.hpp"
 #include <iostream>
 
 int main() {
-    const int WIDTH { 1000 };
-    const int HEIGHT { 800 };
     const int FPS { 30 };
     const int PADDLE_OFFSET { 25 };
 
-    const int TEXT_OFFSET { 100 };
-    const int TEXT_Y_POS { 100 };
-    const int TEXT_SIZE { 100 };
-
     const int player1XPos { PADDLE_OFFSET };
-    const int player2XPos { WIDTH - PADDLE_OFFSET };
+    const int player2XPos { constants::WIDTH - PADDLE_OFFSET };
     int player2TextPos {};
 
-    InitWindow(WIDTH, HEIGHT, "Raylib pong!");
+    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
     SetTargetFPS(FPS);
+
 
     Paddle player1(player1XPos, 1);
     Paddle player2(player2XPos, 2);
