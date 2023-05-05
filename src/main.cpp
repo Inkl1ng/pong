@@ -9,8 +9,13 @@ int main() {
     const int FPS { 30 };
     const int PADDLE_OFFSET { 25 };
 
+    const int TEXT_OFFSET { 100 };
+    const int TEXT_Y_POS { 100 };
+    const int TEXT_SIZE { 100 };
+
     const int player1XPos { PADDLE_OFFSET };
     const int player2XPos { WIDTH - PADDLE_OFFSET };
+    int player2TextPos {};
 
     InitWindow(WIDTH, HEIGHT, "Raylib pong!");
     SetTargetFPS(FPS);
@@ -32,12 +37,14 @@ int main() {
         ball.collision(player2);
 
         // scoring
+        // scoredSide is the side that the ball was scored on
         scoredSide = ball.outOfBounds();
         if (scoredSide == 1) {
-            player1.addPoint();
-            initialFreezeTime = GetTime();
-        } else if (scoredSide == 2) {
             player2.addPoint();
+            initialFreezeTime = GetTime();
+
+        } else if (scoredSide == 2) {
+            player1.addPoint();
             initialFreezeTime = GetTime();
         }
 
@@ -54,10 +61,20 @@ int main() {
 
         // drawing
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(WHITE);
+            // draw game object
             player1.draw();
             player2.draw();
             ball.draw();
+            
+            // draw score
+            DrawText(TextFormat("%i", player1.getScore()),
+                     TEXT_OFFSET, TEXT_Y_POS,
+                     TEXT_SIZE, BLUE);
+            DrawText(TextFormat("%i", player2.getScore()),
+                     WIDTH - MeasureText(TextFormat("%i", player2.getScore()),
+                            TEXT_SIZE) - TEXT_OFFSET, TEXT_Y_POS, 
+                     TEXT_SIZE, RED);
         EndDrawing();
     }
 
