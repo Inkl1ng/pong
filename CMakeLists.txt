@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANARD 17)
 add_executable(pong 
     src/main.cpp
     src/paddle.cpp
-    src/ball.cpp)
+    src/ball.cpp
+    src/text.cpp)
 
 target_link_libraries(pong raylib)
