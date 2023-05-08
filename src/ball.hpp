@@ -16,12 +16,18 @@ public:
     Vector2& getPos();
     int getRadius();
 
+    void freeze();
+    bool isFrozen();
+
 private:
     const float RADIUS { 12 };
 
     Vector2 location { 500, 400 };
     float speed { 10 };
     float angle { 180 };
+    
+    const float FREEZE_TIME { 1.5 };
+    float initialFreezeTime {};
 };
 
 #endif

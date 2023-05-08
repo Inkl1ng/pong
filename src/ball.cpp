@@ -78,3 +78,11 @@ Vector2& Ball::getPos() {
 int Ball::getRadius() {
     return RADIUS;
 }
+
+void Ball::freeze() {
+    initialFreezeTime = GetTime();
+}
+
+bool Ball::isFrozen() {
+    return GetTime() - initialFreezeTime < FREEZE_TIME;
+}
