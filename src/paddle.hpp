@@ -11,11 +11,14 @@ public:
     void move();
     void draw();
     Rectangle& getRectangle();
-    int getScore();
 
+    int getScore();
     void addPoint();
 
+    void reset();
+
 private:
+    int initialYPos;
     const float WIDTH { 15.0 };
     const float HEIGHT { 80.0 };
     const int SPEED { 15 };

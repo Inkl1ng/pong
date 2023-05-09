@@ -7,7 +7,7 @@ Paddle::Paddle(float newXPos, int newPlayerNum) {
     
     playerNum == 1 ? color = BLUE : color = RED;
     rectangle = { newXPos - (WIDTH/2), 400 - (HEIGHT/2), WIDTH, HEIGHT };
-
+    initialYPos = newXPos - (WIDTH/2);
     score = 0;
 }
 
@@ -45,4 +45,8 @@ int Paddle::getScore() {
 
 void Paddle::addPoint() {
     ++score;
+}
+
+void Paddle::reset() {
+    rectangle.y = initialYPos;
 }
