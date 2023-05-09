@@ -86,3 +86,10 @@ void Ball::freeze() {
 bool Ball::isFrozen() {
     return GetTime() - initialFreezeTime < FREEZE_TIME;
 }
+
+void Ball::reset() {
+    location.x = 500;
+    location.y = 400;
+    speed = 10;
+    angle = 180;
+}

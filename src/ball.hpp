@@ -19,6 +19,8 @@ public:
     void freeze();
     bool isFrozen();
 
+    void reset();
+
 private:
     const float RADIUS { 12 };
 
