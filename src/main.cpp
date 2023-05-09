@@ -3,72 +3,100 @@
 #include "raylib.h"
 #include "text.hpp"
 #include "constants.hpp"
+#include "types.hpp"
 #include <iostream>
 
-int main() {
-    const int FPS { 30 };
-    const int PADDLE_OFFSET { 25 };
-
-    const int player1XPos { PADDLE_OFFSET };
-    const int player2XPos { constants::WIDTH - PADDLE_OFFSET };
-    int player2TextPos {};
-
-    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
-    SetTargetFPS(FPS);
-
-
-    Paddle player1(player1XPos, 1);
-    Paddle player2(player2XPos, 2);
+void mainGame(GameStatus& gameStatus) {
+    int scoredSide {};
+    Paddle player1(constants::player1XPos, 1);
+    Paddle player2(constants::player2XPos, 2);
     Ball ball;
 
-    int scoredSide {};
-    bool isFrozen { false };
-    // how long the ball will be frozen after it is scored in seconds
-    const double FREEZE_TIME { 1.500 };
-    // when the freeze started
-    double initialFreezeTime {};
-
-    while(!WindowShouldClose()) {
-        // collision
+    while (gameStatus == GameStatus::playing) {
+        // check for collision
         ball.collision(player1);
         ball.collision(player2);
-
+        
         // scoring
         // scoredSide is the side that the ball was scored on
         scoredSide = ball.outOfBounds();
         if (scoredSide == 1) {
             player2.addPoint();
-            initialFreezeTime = GetTime();
-
+            ball.freeze();
         } else if (scoredSide == 2) {
             player1.addPoint();
-            initialFreezeTime = GetTime();
+            ball.freeze();
+        }
+
+        // check for a win
+        if (player1.getScore() == constants::POINTS_TO_WIN) {
+            gameStatus = GameStatus::player1Win;
+        } else if (player2.getScore() == constants::POINTS_TO_WIN) {
+            gameStatus = GameStatus::player2Win;
+        }
+
+        // check for exiting the game loop
+        if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
+        {
+            gameStatus = GameStatus::exitGame;
+            break;
         }
 
         // movement
         player1.move();
         player2.move();
-
-        // freeze ball movement if needed
-        isFrozen = GetTime() - initialFreezeTime < FREEZE_TIME;
-
-        if (!isFrozen) {
-            ball.move();
-        }
+        if (!ball.isFrozen()) { ball.move(); };
 
         // drawing
         BeginDrawing();
             ClearBackground(BLACK);
-            // draw game object
+            // draw objects
             player1.draw();
             player2.draw();
-            ball.draw();
-            
+
+            if (gameStatus == GameStatus::playing) {
+                ball.draw();
+            }
+
             // draw score
             text::drawScore(player1, player2);
         EndDrawing();
     }
 
+    return;
+}
+
+void winScreen(GameStatus &gameStatus) {
+    while (gameStatus == GameStatus::player1Win
+            || gameStatus == GameStatus::player2Win) {
+        BeginDrawing();
+            ClearBackground((BLACK));
+            text::drawWinText(gameStatus);
+        EndDrawing();
+        
+        if (IsKeyPressed(KEY_Y)) { gameStatus = GameStatus::playing; }
+        if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::exitGame; }
+        
+    }
+}
+
+int main() {
+    const int FPS { 30 };
+
+   int player2TextPos {};
+
+    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
+    SetTargetFPS(FPS);
+    SetExitKey(KEY_NULL);
+
+    GameStatus gameStatus { GameStatus::playing };
+
+    while (gameStatus == GameStatus::playing) {
+        mainGame(gameStatus);
+        winScreen(gameStatus);
+   }
+
+    CloseWindow();
     return 0;
 }
 
