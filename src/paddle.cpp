@@ -49,4 +49,5 @@ void Paddle::addPoint() {
 
 void Paddle::reset() {
     rectangle.y = initialYPos;
+    score = 0;
 }
