@@ -1,10 +1,11 @@
 #ifndef TYPES_HPP
 #define TYPES_HPP
 
-enum class GameResult {
+enum class GameStatus {
     playing,
     player1Win,
     player2Win,
+    exitGame,
 };
 
 #endif
