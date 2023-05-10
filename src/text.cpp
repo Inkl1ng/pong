@@ -30,12 +30,12 @@ namespace text {
         }
 
         int winTextWidth = MeasureText(winText.c_str(), WIN_SIZE);
-        DrawText(winText.c_str(), (constants::WIDTH/2) - (winTextWidth/2), 400,
+        DrawText(winText.c_str(), (constants::WIDTH/2) - (winTextWidth/2), 300,
                  WIN_SIZE, WHITE);
        
         int replayTextWidth = MeasureText(replayText.c_str(), WIN_SIZE);
         DrawText(replayText.c_str(), (constants::WIDTH/2) - (replayTextWidth/2),
-                 600, WIN_SIZE, WHITE);
+                 350, WIN_SIZE, WHITE);
     }
 }
 
