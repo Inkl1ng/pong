@@ -6,6 +6,7 @@ enum class GameStatus {
     player1Win,
     player2Win,
     exitGame,
+    exitWindow,
 };
 
 #endif
