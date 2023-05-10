@@ -6,10 +6,8 @@
 #include "types.hpp"
 #include <iostream>
 
-void mainGame(GameStatus& gameStatus) {
+void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
     int scoredSide {};
-    Paddle player1(constants::player1XPos, 1);
-    Paddle player2(constants::player2XPos, 2);
     Ball ball;
 
     while (gameStatus == GameStatus::playing) {
@@ -60,21 +58,34 @@ void mainGame(GameStatus& gameStatus) {
 
             // draw score
             text::drawScore(player1, player2);
+
+            // draw vertical line down the middle
+            DrawLineV({constants::WIDTH/2.0,0},
+                      {constants::WIDTH/2.0, constants::HEIGHT},
+                      WHITE);
         EndDrawing();
     }
 
     return;
 }
 
-void winScreen(GameStatus &gameStatus) {
+void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
     while (gameStatus == GameStatus::player1Win
             || gameStatus == GameStatus::player2Win) {
         BeginDrawing();
             ClearBackground((BLACK));
+
+            player1.draw();
+            player2.draw();
+            text::drawScore(player1, player2);
             text::drawWinText(gameStatus);
         EndDrawing();
         
-        if (IsKeyPressed(KEY_Y)) { gameStatus = GameStatus::playing; }
+        if (IsKeyPressed(KEY_Y)) {
+            gameStatus = GameStatus::playing;
+            player1.reset();
+            player2.reset();
+        }
         if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::exitGame; }
         
     }
@@ -83,18 +94,20 @@ void winScreen(GameStatus &gameStatus) {
 int main() {
     const int FPS { 30 };
 
-   int player2TextPos {};
+    int player2TextPos {};
 
     InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
     SetTargetFPS(FPS);
     SetExitKey(KEY_NULL);
 
     GameStatus gameStatus { GameStatus::playing };
-
+    Paddle player1(constants::player1XPos, 1);
+    Paddle player2(constants::player2XPos, 2);
+ 
     while (gameStatus == GameStatus::playing) {
-        mainGame(gameStatus);
-        winScreen(gameStatus);
-   }
+        mainGame(gameStatus, player1, player2);
+        winScreen(gameStatus, player1, player2);
+    }
 
     CloseWindow();
     return 0;
