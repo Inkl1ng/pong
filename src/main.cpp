@@ -91,6 +91,29 @@ void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
     }
 }
 
+void titleScreen() {
+    bool exitGame { false };
+    GameStatus gameStatus { GameStatus::playing };
+ 
+    Paddle player1(constants::player1XPos, 1);
+    Paddle player2(constants::player2XPos, 2);
+
+    while (!exitGame) {
+        BeginDrawing();
+            DrawText("Pong!", 0, 0, 40, WHITE);
+        EndDrawing();
+
+        if (IsKeyPressed(KEY_SPACE)) {
+            while (gameStatus == GameStatus::playing) {
+                mainGame(gameStatus, player1, player2);
+                winScreen(gameStatus, player1, player2);
+            }
+        }
+        if (IsKeyPressed(KEY_Q)) {
+            exitGame = true;
+        }
+    }
+}
 int main() {
     const int FPS { 30 };
 
@@ -100,15 +123,8 @@ int main() {
     SetTargetFPS(FPS);
     SetExitKey(KEY_NULL);
 
-    GameStatus gameStatus { GameStatus::playing };
-    Paddle player1(constants::player1XPos, 1);
-    Paddle player2(constants::player2XPos, 2);
+    titleScreen();
  
-    while (gameStatus == GameStatus::playing) {
-        mainGame(gameStatus, player1, player2);
-        winScreen(gameStatus, player1, player2);
-    }
-
     CloseWindow();
     return 0;
 }
