@@ -10,7 +10,7 @@ public:
     
     void move();
     void draw();
-    Rectangle& getRectangle();
+    Rectangle &getRectangle();
 
     int getScore();
     void addPoint();
@@ -27,7 +27,7 @@ private:
     int score {};
 
     Rectangle rectangle;
-    Rectangle& r_rectangle { rectangle };
+    Rectangle &r_rectangle { rectangle };
 };
 
 #endif

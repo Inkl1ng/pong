@@ -6,14 +6,14 @@
 #include <string>
 
 namespace text {
-    void drawScore(Paddle& player1, Paddle &player2) {
+    void drawScore(Paddle& player1, Paddle& player2) {
         DrawText(TextFormat("%i", player1.getScore()),
                  TEXT_X_PADDING, TEXT_Y_PADDING,
                  SCORE_SIZE, BLUE);
         int player2TextWidth = MeasureText(TextFormat("%i", player2.getScore()),
                 SCORE_SIZE);
         DrawText(TextFormat("%i", player2.getScore()),
-                 constants::WIDTH - player2TextWidth - TEXT_X_PADDING, 
+                 constants::width - player2TextWidth - TEXT_X_PADDING, 
                  TEXT_Y_PADDING,
                  SCORE_SIZE, RED);
     }
@@ -23,18 +23,18 @@ namespace text {
     void drawWinText(GameStatus& gameStatus) {
         std::string winText {};
         std::string replayText { "Play again? (Press Y/N)" };
-        if (gameStatus == GameStatus::player1Win) {
+        if (gameStatus == GameStatus::PLAYER_1_WIN) {
             winText = "Player 1 wins!";
         } else {
             winText = "Player 2 wins!";
         }
 
         int winTextWidth = MeasureText(winText.c_str(), WIN_SIZE);
-        DrawText(winText.c_str(), (constants::WIDTH/2) - (winTextWidth/2), 300,
+        DrawText(winText.c_str(), (constants::width/2) - (winTextWidth/2), 300,
                  WIN_SIZE, WHITE);
        
         int replayTextWidth = MeasureText(replayText.c_str(), WIN_SIZE);
-        DrawText(replayText.c_str(), (constants::WIDTH/2) - (replayTextWidth/2),
+        DrawText(replayText.c_str(), (constants::width/2) - (replayTextWidth/2),
                  350, WIN_SIZE, WHITE);
     }
 }

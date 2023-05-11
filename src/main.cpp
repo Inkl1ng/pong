@@ -10,40 +10,40 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
     int scoredSide {};
     Ball ball;
 
-    while (gameStatus == GameStatus::playing) {
+    while (gameStatus == GameStatus::PLAYING) {
         // check for collision
-        ball.collision(player1);
-        ball.collision(player2);
+        ball.Collision(player1);
+        ball.Collision(player2);
         
         // scoring
         // scoredSide is the side that the ball was scored on
-        scoredSide = ball.outOfBounds();
+        scoredSide = ball.OutOfBounds();
         if (scoredSide == 1) {
             player2.addPoint();
-            ball.freeze();
+            ball.Freeze();
         } else if (scoredSide == 2) {
             player1.addPoint();
-            ball.freeze();
+            ball.Freeze();
         }
 
         // check for a win
-        if (player1.getScore() == constants::POINTS_TO_WIN) {
-            gameStatus = GameStatus::player1Win;
-        } else if (player2.getScore() == constants::POINTS_TO_WIN) {
+        if (player1.getScore() == constants::pointsToWin) {
+            gameStatus = GameStatus::PLAYER_1_WIN;
+        } else if (player2.getScore() == constants::pointsToWin) {
             gameStatus = GameStatus::player2Win;
         }
 
         // check for exiting the game loop
         if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
         {
-            gameStatus = GameStatus::exitGame;
+            gameStatus = GameStatus::EXIT_GAME;
             break;
         }
 
         // movement
         player1.move();
         player2.move();
-        if (!ball.isFrozen()) { ball.move(); };
+        if (!ball.IsFrozen()) { ball.Move(); };
 
         // drawing
         BeginDrawing();
@@ -52,16 +52,16 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
             player1.draw();
             player2.draw();
 
-            if (gameStatus == GameStatus::playing) {
-                ball.draw();
+            if (gameStatus == GameStatus::PLAYING) {
+                ball.Draw();
             }
 
             // draw score
             text::drawScore(player1, player2);
 
             // draw vertical line down the middle
-            DrawLineV({constants::WIDTH/2.0,0},
-                      {constants::WIDTH/2.0, constants::HEIGHT},
+            DrawLineV({constants::width/2.0,0},
+                      {constants::width/2.0, constants::height},
                       WHITE);
         EndDrawing();
     }
@@ -70,7 +70,7 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
 }
 
 void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
-    while (gameStatus == GameStatus::player1Win
+    while (gameStatus == GameStatus::PLAYER_1_WIN
             || gameStatus == GameStatus::player2Win) {
         BeginDrawing();
             ClearBackground((BLACK));
@@ -82,18 +82,18 @@ void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
         EndDrawing();
         
         if (IsKeyPressed(KEY_Y)) {
-            gameStatus = GameStatus::playing;
+            gameStatus = GameStatus::PLAYING;
             player1.reset();
             player2.reset();
         }
-        if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::exitGame; }
+        if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::EXIT_GAME; }
     }
 }
 
 int main() {
     // initialization
     const int FPS { 30 };
-    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
+    InitWindow(constants::width, constants::heigh, "Raylib pong!");
     SetTargetFPS(FPS);
 
     // there are custom keybinds for exitting the game so the ESCAPE
@@ -102,14 +102,14 @@ int main() {
     
     // gameStatus gets passed around through a reference so it changes
     // a lot
-    GameStatus gameStatus { GameStatus::playing };
+    GameStatus gameStatus { GameStatus::Playing };
  
     // initialize players
     Paddle player1(constants::player1XPos, 1);
     Paddle player2(constants::player2XPos, 2);
     
     // title screen loop
-    while (gameStatus != GameStatus::exitWindow) {
+    while (gameStatus != GameStatus::EXIT_WINDOW) {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
@@ -118,17 +118,17 @@ int main() {
 
         // check if the players want to start playing
         if (IsKeyPressed(KEY_SPACE)) {
-            gameStatus = GameStatus::playing;
+            gameStatus = GameStatus::Playing;
 
             // enter game
-            while (gameStatus == GameStatus::playing) {
+            while (gameStatus == GameStatus::Playing) {
                 mainGame(gameStatus, player1, player2);
                 winScreen(gameStatus, player1, player2);
             }
         }
         // check if the players want to quit
         if (IsKeyPressed(KEY_Q)) {
-            gameStatus = GameStatus::exitWindow;
+            gameStatus = GameStatus::EXIT_WINDOW;
         }
     }
 

@@ -4,29 +4,29 @@
 #include <cmath>
 #include <array>
 
-void Ball::move() {
+void Ball::Move() {
     float radians = angle * 3.14159 / 180;
     location.x += speed * std::cos(radians);
     location.y += speed * std::sin(radians);
 
     // bounce off the top and bottom boarders of the playfield
-    if (location.y - RADIUS < 0) {
-        location.y = RADIUS;
+    if (location.y - radius < 0) {
+        location.y = radius;
         angle = 360 - angle;
     }
-    if (location.y + RADIUS > 800) {
-        location.y = 800 - RADIUS;
+    if (location.y + radius > 800) {
+        location.y = 800 - radius;
         angle = 360 - angle;
     }
 }
 
-void Ball::draw() {
-    DrawCircle(location.x, location.y, RADIUS, WHITE);
+void Ball::Draw() {
+    DrawCircle(location.x, location.y, radius, WHITE);
 }
 
-void Ball::collision(Paddle& target) {
+void Ball::Collision(Paddle& target) {
     Rectangle& r_targetRect { target.getRectangle() };
-    bool collided = CheckCollisionCircleRec(location, RADIUS,
+    bool collided = CheckCollisionCircleRec(location, radius,
             r_targetRect);
 
     if (collided) {
@@ -48,7 +48,7 @@ void Ball::collision(Paddle& target) {
     }
 }
 
-int Ball::outOfBounds() {
+int Ball::OutOfBounds() {
     bool outOfBounds { location.x < 0 || location.x > 1000 };
     int playerSide {}; // which side the ball was on when it was scored
 
@@ -71,23 +71,23 @@ int Ball::outOfBounds() {
     }
 }
 
-Vector2& Ball::getPos() {
+Vector2& Ball::GetPos() {
     return location;
 }
 
-int Ball::getRadius() {
-    return RADIUS;
+int Ball::GetRadius() {
+    return radius;
 }
 
-void Ball::freeze() {
+void Ball::Freeze() {
     initialFreezeTime = GetTime();
 }
 
-bool Ball::isFrozen() {
-    return GetTime() - initialFreezeTime < FREEZE_TIME;
+bool Ball::IsFrozen() {
+    return GetTime() - initialFreezeTime < freezeTime;
 }
 
-void Ball::reset() {
+void Ball::Reset() {
     location.x = 500;
     location.y = 400;
     speed = 10;

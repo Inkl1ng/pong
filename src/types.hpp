@@ -2,11 +2,11 @@
 #define TYPES_HPP
 
 enum class GameStatus {
-    playing,
-    player1Win,
+    PLAYING,
+    PLAYER_1_WIN,
     player2Win,
-    exitGame,
-    exitWindow,
+    EXIT_GAME,
+    EXIT_WINDOW,
 };
 
 #endif

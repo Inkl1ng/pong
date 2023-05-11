@@ -7,28 +7,28 @@
 
 class Ball {
 public:
-    void move();
-    void draw();
+    void Move();
+    void Draw();
 
-    void collision(Paddle& target);
-    int outOfBounds();
+    void Collision(Paddle& target);
+    int OutOfBounds();
 
-    Vector2& getPos();
-    int getRadius();
+    Vector2& GetPos();
+    int GetRadius();
 
-    void freeze();
-    bool isFrozen();
+    void Freeze();
+    bool IsFrozen();
 
-    void reset();
+    void Reset();
 
 private:
-    const float RADIUS { 12 };
+    const float radius { 12 };
 
     Vector2 location { 500, 400 };
     float speed { 10 };
     float angle { 180 };
     
-    const float FREEZE_TIME { 1.5 };
+    const float freezeTime { 1.5 };
     float initialFreezeTime {};
 };
 
