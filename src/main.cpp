@@ -87,44 +87,52 @@ void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
             player2.reset();
         }
         if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::exitGame; }
-        
     }
 }
 
-void titleScreen() {
-    bool exitGame { false };
+int main() {
+    // initialization
+    const int FPS { 30 };
+    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
+    SetTargetFPS(FPS);
+
+    // there are custom keybinds for exitting the game so the ESCAPE
+    // key will be unbinded from exitting the game
+    SetExitKey(KEY_NULL);
+    
+    // gameStatus gets passed around through a reference so it changes
+    // a lot
     GameStatus gameStatus { GameStatus::playing };
  
+    // initialize players
     Paddle player1(constants::player1XPos, 1);
     Paddle player2(constants::player2XPos, 2);
-
-    while (!exitGame) {
+    
+    // title screen loop
+    while (gameStatus != GameStatus::exitWindow) {
+        // draw title screen text
         BeginDrawing();
+            ClearBackground(BLACK);
             DrawText("Pong!", 0, 0, 40, WHITE);
         EndDrawing();
 
+        // check if the players want to start playing
         if (IsKeyPressed(KEY_SPACE)) {
+            gameStatus = GameStatus::playing;
+
+            // enter game
             while (gameStatus == GameStatus::playing) {
                 mainGame(gameStatus, player1, player2);
                 winScreen(gameStatus, player1, player2);
             }
         }
+        // check if the players want to quit
         if (IsKeyPressed(KEY_Q)) {
-            exitGame = true;
+            gameStatus = GameStatus::exitWindow;
         }
     }
-}
-int main() {
-    const int FPS { 30 };
 
-    int player2TextPos {};
-
-    InitWindow(constants::WIDTH, constants::HEIGHT, "Raylib pong!");
-    SetTargetFPS(FPS);
-    SetExitKey(KEY_NULL);
-
-    titleScreen();
- 
+    // end program
     CloseWindow();
     return 0;
 }
