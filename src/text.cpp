@@ -6,13 +6,13 @@
 #include <string>
 
 namespace text {
-    void drawScore(Paddle& player1, Paddle& player2) {
-        DrawText(TextFormat("%i", player1.getScore()),
+    void DrawScore(Paddle& player1, Paddle& player2) {
+        DrawText(TextFormat("%i", player1.GetScore()),
                  TEXT_X_PADDING, TEXT_Y_PADDING,
                  SCORE_SIZE, BLUE);
-        int player2TextWidth = MeasureText(TextFormat("%i", player2.getScore()),
+        int player2TextWidth = MeasureText(TextFormat("%i", player2.GetScore()),
                 SCORE_SIZE);
-        DrawText(TextFormat("%i", player2.getScore()),
+        DrawText(TextFormat("%i", player2.GetScore()),
                  constants::width - player2TextWidth - TEXT_X_PADDING, 
                  TEXT_Y_PADDING,
                  SCORE_SIZE, RED);
@@ -20,7 +20,7 @@ namespace text {
 
 
 
-    void drawWinText(GameStatus& gameStatus) {
+    void DrawWinText(GameStatus& gameStatus) {
         std::string winText {};
         std::string replayText { "Play again? (Press Y/N)" };
         if (gameStatus == GameStatus::PLAYER_1_WIN) {

@@ -19,17 +19,17 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
         // scoredSide is the side that the ball was scored on
         scoredSide = ball.OutOfBounds();
         if (scoredSide == 1) {
-            player2.addPoint();
+            player2.AddPoint();
             ball.Freeze();
         } else if (scoredSide == 2) {
-            player1.addPoint();
+            player1.AddPoint();
             ball.Freeze();
         }
 
         // check for a win
-        if (player1.getScore() == constants::pointsToWin) {
+        if (player1.GetScore() == constants::pointsToWin) {
             gameStatus = GameStatus::PLAYER_1_WIN;
-        } else if (player2.getScore() == constants::pointsToWin) {
+        } else if (player2.GetScore() == constants::pointsToWin) {
             gameStatus = GameStatus::player2Win;
         }
 
@@ -41,23 +41,23 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
         }
 
         // movement
-        player1.move();
-        player2.move();
+        player1.Move();
+        player2.Move();
         if (!ball.IsFrozen()) { ball.Move(); };
 
         // drawing
         BeginDrawing();
             ClearBackground(BLACK);
             // draw objects
-            player1.draw();
-            player2.draw();
+            player1.Draw();
+            player2.Draw();
 
             if (gameStatus == GameStatus::PLAYING) {
                 ball.Draw();
             }
 
             // draw score
-            text::drawScore(player1, player2);
+            text::DrawScore(player1, player2);
 
             // draw vertical line down the middle
             DrawLineV({constants::width/2.0,0},
@@ -75,16 +75,16 @@ void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
         BeginDrawing();
             ClearBackground((BLACK));
 
-            player1.draw();
-            player2.draw();
-            text::drawScore(player1, player2);
-            text::drawWinText(gameStatus);
+            player1.Draw();
+            player2.Draw();
+            text::DrawScore(player1, player2);
+            text::DrawWinText(gameStatus);
         EndDrawing();
         
         if (IsKeyPressed(KEY_Y)) {
             gameStatus = GameStatus::PLAYING;
-            player1.reset();
-            player2.reset();
+            player1.Reset();
+            player2.Reset();
         }
         if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::EXIT_GAME; }
     }

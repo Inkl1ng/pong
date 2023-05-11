@@ -10,8 +10,8 @@ namespace text {
     const int SCORE_SIZE { 100 }; 
     const int WIN_SIZE { 30 };
 
-    void drawScore(Paddle& player1, Paddle& player2);
-    void drawWinText(GameStatus& gameStatus);
+    void DrawScore(Paddle& player1, Paddle& player2);
+    void DrawWinText(GameStatus& gameStatus);
     GameStatus drawReplayButton(GameStatus& gameStatus);
 }
 

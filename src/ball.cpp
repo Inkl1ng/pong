@@ -25,7 +25,7 @@ void Ball::Draw() {
 }
 
 void Ball::Collision(Paddle& target) {
-    Rectangle& r_targetRect { target.getRectangle() };
+    Rectangle& r_targetRect { target.GetRectangle() };
     bool collided = CheckCollisionCircleRec(location, radius,
             r_targetRect);
 

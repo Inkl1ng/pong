@@ -8,14 +8,14 @@ class Paddle {
 public:
     Paddle(float newXPos, int newPlayerNum);
     
-    void move();
-    void draw();
-    Rectangle &getRectangle();
+    void Move();
+    void Draw();
+    Rectangle &GetRectangle();
 
-    int getScore();
-    void addPoint();
+    int GetScore();
+    void AddPoint();
 
-    void reset();
+    void Reset();
 
 private:
     const float WIDTH { 15.0 };

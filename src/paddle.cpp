@@ -10,7 +10,7 @@ Paddle::Paddle(float newXPos, int newPlayerNum) {
     score = 0;
 }
 
-void Paddle::move() {
+void Paddle::Move() {
     // get and register input from player
     switch (playerNum) {
         case 1:
@@ -28,25 +28,25 @@ void Paddle::move() {
     if (rectangle.y + HEIGHT > 800) { rectangle.y = 800 - HEIGHT; }
 }
 
-void Paddle::draw() {
+void Paddle::Draw() {
     // line above sets the color to either be BLUE or RED based on the 
     // player number, 1 for BLUE and 2 for RED
     DrawRectangleRec(rectangle, color);
 }
 
-Rectangle& Paddle::getRectangle() {
+Rectangle& Paddle::GetRectangle() {
     return r_rectangle;
 }
 
-int Paddle::getScore() {
+int Paddle::GetScore() {
     return score;
 }
 
-void Paddle::addPoint() {
+void Paddle::AddPoint() {
     ++score;
 }
 
-void Paddle::reset() {
+void Paddle::Reset() {
     rectangle.y = 400 - (HEIGHT/2);
     score = 0;
 }
