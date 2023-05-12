@@ -34,3 +34,6 @@
 # /build/ and /bin/ directories
 build/
 bin/
+
+# Visual Studio Code
+.vscode
