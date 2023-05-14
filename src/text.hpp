@@ -5,14 +5,14 @@
 #include "types.hpp"
 
 namespace text {
-    const int TEXT_X_PADDING { 100 };
-    const int TEXT_Y_PADDING { 100 };
-    const int SCORE_SIZE { 100 }; 
-    const int WIN_SIZE { 30 };
+    const int x_padding { 100 };
+    const int y_padding { 100 };
+    const int score_size { 100 }; 
+    const int win_size { 30 };
 
-    void DrawScore(Paddle& player1, Paddle& player2);
-    void DrawWinText(GameStatus& gameStatus);
-    GameStatus drawReplayButton(GameStatus& gameStatus);
+    void DrawScore(Paddle& player_1, Paddle& player_2);
+    void DrawWinText(GameStatus& game_status);
+    GameStatus drawReplayButton(GameStatus& game_status);
 }
 
 #endif

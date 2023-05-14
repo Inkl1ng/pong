@@ -6,36 +6,36 @@
 #include <string>
 
 namespace text {
-    void DrawScore(Paddle& player1, Paddle& player2) {
-        DrawText(TextFormat("%i", player1.GetScore()),
-                 TEXT_X_PADDING, TEXT_Y_PADDING,
-                 SCORE_SIZE, BLUE);
-        int player2TextWidth = MeasureText(TextFormat("%i", player2.GetScore()),
-                SCORE_SIZE);
-        DrawText(TextFormat("%i", player2.GetScore()),
-                 constants::width - player2TextWidth - TEXT_X_PADDING, 
-                 TEXT_Y_PADDING,
-                 SCORE_SIZE, RED);
+    void DrawScore(Paddle& player_1, Paddle& player_2) {
+        DrawText(TextFormat("%i", player_1.GetScore()),
+                 x_padding, y_padding,
+                 score_size, BLUE);
+        int player_2_text_width = MeasureText(TextFormat("%i", player_2.GetScore()),
+                score_size);
+        DrawText(TextFormat("%i", player_2.GetScore()),
+                 constants::width - player_2_text_width - x_padding, 
+                 y_padding,
+                 score_size, RED);
     }
 
 
 
-    void DrawWinText(GameStatus& gameStatus) {
-        std::string winText {};
-        std::string replayText { "Play again? (Press Y/N)" };
-        if (gameStatus == GameStatus::PLAYER_1_WIN) {
-            winText = "Player 1 wins!";
+    void DrawWinText(GameStatus& game_status) {
+        std::string win_text {};
+        std::string replay_text { "Play again? (Press Y/N)" };
+        if (game_status == GameStatus::PLAYER_1_WIN) {
+            win_text = "Player 1 wins!";
         } else {
-            winText = "Player 2 wins!";
+            win_text = "Player 2 wins!";
         }
 
-        int winTextWidth = MeasureText(winText.c_str(), WIN_SIZE);
-        DrawText(winText.c_str(), (constants::width/2) - (winTextWidth/2), 300,
-                 WIN_SIZE, WHITE);
+        int win_text_width = MeasureText(win_text.c_str(), win_size);
+        DrawText(win_text.c_str(), (constants::width/2) - (win_text_width/2), 300,
+                 win_size, WHITE);
        
-        int replayTextWidth = MeasureText(replayText.c_str(), WIN_SIZE);
-        DrawText(replayText.c_str(), (constants::width/2) - (replayTextWidth/2),
-                 350, WIN_SIZE, WHITE);
+        int replay_text_width = MeasureText(replay_text.c_str(), win_size);
+        DrawText(replay_text.c_str(), (constants::width/2) - (replay_text_width/2),
+                 350, win_size, WHITE);
     }
 }
 
