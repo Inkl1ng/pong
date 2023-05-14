@@ -28,8 +28,8 @@ private:
     float speed { 10 };
     float angle { 180 };
     
-    const float freezeTime { 1.5 };
-    float initialFreezeTime {};
+    const float freeze_time { 1.5 };
+    float initial_freeze_time {};
 };
 
 #endif
