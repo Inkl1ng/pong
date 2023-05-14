@@ -6,7 +6,7 @@
 
 class Paddle {
 public:
-    Paddle(float newXPos, int newPlayerNum);
+    Paddle(float new_x_pos, int new_player_num);
     
     void Move();
     void Draw();
@@ -18,11 +18,11 @@ public:
     void Reset();
 
 private:
-    const float WIDTH { 15.0 };
-    const float HEIGHT { 80.0 };
-    const int SPEED { 15 };
+    const float width { 15.0 };
+    const float height { 80.0 };
+    const int speed { 15 };
 
-    int playerNum {}; // either 1 or 2, represnets player 1 or 2
+    int player_num {}; // either 1 or 2, represnets player 1 or 2
     Color color {};
     int score {};
 
