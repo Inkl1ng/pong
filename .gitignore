@@ -35,5 +35,11 @@
 build/
 bin/
 
+# lib direcotry
+lib/
+
 # Visual Studio Code
 .vscode
+
+# Visual Studio
+.vs
