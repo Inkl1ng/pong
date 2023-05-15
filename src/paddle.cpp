@@ -6,7 +6,7 @@ Paddle::Paddle(float new_x_pos, int new_player_num) {
     player_num = new_player_num;
     
     player_num == 1 ? color = BLUE : color = RED;
-    rectangle = { new_x_pos - (width/2), 400 - (height/2), height, height };
+    rectangle = { new_x_pos - (width/2), 400 - (height/2), width, height };
     score = 0;
 }
 
