@@ -43,3 +43,4 @@ lib/
 
 # Visual Studio
 .vs
+CMakeSettings.json
