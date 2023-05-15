@@ -1,7 +1,6 @@
 #ifndef PADDLE_HPP
 #define PADDLE_HPP
 
-
 #include "raylib.h"
 
 class Paddle {
