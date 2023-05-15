@@ -1,10 +1,9 @@
 #include "paddle.hpp"
 #include "ball.hpp"
-#include "raylib.h"
 #include "text.hpp"
 #include "constants.hpp"
 #include "types.hpp"
-#include <iostream>
+#include "raylib.h"
 
 void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
     int scoredSide {};
@@ -93,7 +92,7 @@ void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
 int main() {
     // initialization
     const int FPS { 30 };
-    InitWindow(constants::width, constants::heigh, "Raylib pong!");
+    InitWindow(constants::width, constants::height, "Raylib pong!");
     SetTargetFPS(FPS);
 
     // there are custom keybinds for exitting the game so the ESCAPE
@@ -102,7 +101,7 @@ int main() {
     
     // gameStatus gets passed around through a reference so it changes
     // a lot
-    GameStatus gameStatus { GameStatus::Playing };
+    GameStatus gameStatus { GameStatus::PLAYING };
  
     // initialize players
     Paddle player1(constants::player1XPos, 1);
@@ -118,10 +117,10 @@ int main() {
 
         // check if the players want to start playing
         if (IsKeyPressed(KEY_SPACE)) {
-            gameStatus = GameStatus::Playing;
+            gameStatus = GameStatus::PLAYING;
 
             // enter game
-            while (gameStatus == GameStatus::Playing) {
+            while (gameStatus == GameStatus::PLAYING) {
                 mainGame(gameStatus, player1, player2);
                 winScreen(gameStatus, player1, player2);
             }
