@@ -4,7 +4,7 @@
 enum class GameStatus {
     PLAYING,
     PLAYER_1_WIN,
-    player2Win,
+    PLAYER_2_WIN,
     EXIT_GAME,
     EXIT_WINDOW,
 };

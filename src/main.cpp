@@ -5,58 +5,58 @@
 #include "types.hpp"
 #include "raylib.h"
 
-void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
-    int scoredSide {};
+void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
+    int scored_side {};
     Ball ball;
 
-    while (gameStatus == GameStatus::PLAYING) {
+    while (game_status == GameStatus::PLAYING) {
         // check for collision
-        ball.Collision(player1);
-        ball.Collision(player2);
+        ball.Collision(player_1);
+        ball.Collision(player_2);
         
         // scoring
         // scoredSide is the side that the ball was scored on
-        scoredSide = ball.OutOfBounds();
-        if (scoredSide == 1) {
-            player2.AddPoint();
+        scored_side = ball.OutOfBounds();
+        if (scored_side == 1) {
+            player_2.AddPoint();
             ball.Freeze();
-        } else if (scoredSide == 2) {
-            player1.AddPoint();
+        } else if (scored_side == 2) {
+            player_1.AddPoint();
             ball.Freeze();
         }
 
         // check for a win
-        if (player1.GetScore() == constants::pointsToWin) {
-            gameStatus = GameStatus::PLAYER_1_WIN;
-        } else if (player2.GetScore() == constants::pointsToWin) {
-            gameStatus = GameStatus::player2Win;
+        if (player_1.GetScore() == constants::points_to_win) {
+            game_status = GameStatus::PLAYER_1_WIN;
+        } else if (player_2.GetScore() == constants::points_to_win) {
+            game_status = GameStatus::PLAYER_2_WIN;
         }
 
         // check for exiting the game loop
         if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
         {
-            gameStatus = GameStatus::EXIT_GAME;
+            game_status = GameStatus::EXIT_GAME;
             break;
         }
 
         // movement
-        player1.Move();
-        player2.Move();
+        player_1.Move();
+        player_2.Move();
         if (!ball.IsFrozen()) { ball.Move(); };
 
         // drawing
         BeginDrawing();
             ClearBackground(BLACK);
             // draw objects
-            player1.Draw();
-            player2.Draw();
+            player_1.Draw();
+            player_2.Draw();
 
-            if (gameStatus == GameStatus::PLAYING) {
+            if (game_status == GameStatus::PLAYING) {
                 ball.Draw();
             }
 
             // draw score
-            text::DrawScore(player1, player2);
+            text::DrawScore(player_1, player_2);
 
             // draw vertical line down the middle
             DrawLineV({constants::width/2.0,0},
@@ -68,24 +68,24 @@ void mainGame(GameStatus& gameStatus, Paddle& player1, Paddle& player2) {
     return;
 }
 
-void winScreen(GameStatus &gameStatus, Paddle& player1, Paddle& player2) {
-    while (gameStatus == GameStatus::PLAYER_1_WIN
-            || gameStatus == GameStatus::player2Win) {
+void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
+    while (game_status == GameStatus::PLAYER_1_WIN
+            || game_status == GameStatus::PLAYER_2_WIN) {
         BeginDrawing();
             ClearBackground((BLACK));
 
-            player1.Draw();
-            player2.Draw();
-            text::DrawScore(player1, player2);
-            text::DrawWinText(gameStatus);
+            player_1.Draw();
+            player_2.Draw();
+            text::DrawScore(player_1, player_2);
+            text::DrawWinText(game_status);
         EndDrawing();
         
         if (IsKeyPressed(KEY_Y)) {
-            gameStatus = GameStatus::PLAYING;
-            player1.Reset();
-            player2.Reset();
+            game_status = GameStatus::PLAYING;
+            player_1.Reset();
+            player_2.Reset();
         }
-        if (IsKeyPressed(KEY_N)) { gameStatus = GameStatus::EXIT_GAME; }
+        if (IsKeyPressed(KEY_N)) { game_status = GameStatus::EXIT_GAME; }
     }
 }
 
@@ -104,8 +104,8 @@ int main() {
     GameStatus gameStatus { GameStatus::PLAYING };
  
     // initialize players
-    Paddle player1(constants::player1XPos, 1);
-    Paddle player2(constants::player2XPos, 2);
+    Paddle player1(constants::player_1_x_pos, 1);
+    Paddle player2(constants::player_2_x_pos, 2);
     
     // title screen loop
     while (gameStatus != GameStatus::EXIT_WINDOW) {

@@ -4,9 +4,9 @@
 namespace constants {
     inline constexpr int width { 1000 }; // screen width
     inline constexpr int height { 800 }; // screen height
-    inline constexpr int pointsToWin { 1 };
-    const int player1XPos { 25 };
-    const int player2XPos { width - 25 };
+    inline constexpr int points_to_win { 1 };
+    const int player_1_x_pos { 25 };
+    const int player_2_x_pos { width - 25 };
  
 };
 
