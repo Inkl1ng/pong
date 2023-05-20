@@ -31,5 +31,7 @@ add_executable(${PROJECT_NAME}
     src/ball.cpp
     src/paddle.cpp
     src/text.cpp)
-#set(raylib_VERBOSE 1)
+
+target_include_directories(Pong PUBLIC "${CMAKE_SOURCE_DIR}/src")
+    #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
