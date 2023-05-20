@@ -44,3 +44,6 @@ lib/
 # Visual Studio
 .vs
 CMakeSettings.json
+
+# clangd LSP cache
+.cache
