@@ -6,7 +6,7 @@
 #include <string>
 
 namespace text {
-    void DrawScore(Paddle& player_1, Paddle& player_2) {
+    void drawScore(Paddle& player_1, Paddle& player_2) {
         DrawText(TextFormat("%i", player_1.GetScore()),
                  x_padding, y_padding,
                  score_size, BLUE);
@@ -18,9 +18,7 @@ namespace text {
                  score_size, RED);
     }
 
-
-
-    void DrawWinText(GameStatus& game_status) {
+    void drawWinText(GameStatus& game_status) {
         std::string win_text {};
         std::string replay_text { "Play again? (Press Y/N)" };
         if (game_status == GameStatus::PLAYER_1_WIN) {

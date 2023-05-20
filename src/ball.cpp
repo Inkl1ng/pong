@@ -4,7 +4,7 @@
 #include <cmath>
 #include <array>
 
-void Ball::Move() {
+void Ball::move() {
     float radians = angle * 3.14159 / 180;
     location.x += speed * std::cos(radians);
     location.y += speed * std::sin(radians);
@@ -20,11 +20,11 @@ void Ball::Move() {
     }
 }
 
-void Ball::Draw() {
+void Ball::draw() {
     DrawCircle(location.x, location.y, radius, WHITE);
 }
 
-void Ball::Collision(Paddle& target) {
+void Ball::collision(Paddle& target) {
     Rectangle& r_target_rect { target.GetRectangle() };
     bool collided = CheckCollisionCircleRec(location, radius,
             r_target_rect);
@@ -49,7 +49,7 @@ void Ball::Collision(Paddle& target) {
     }
 }
 
-int Ball::OutOfBounds() {
+int Ball::outOfBounds() {
     bool out_of_bounds { location.x < 0 || location.x > 1000 };
     int player_side {}; // which side the ball was on when it was scored
 
@@ -72,23 +72,23 @@ int Ball::OutOfBounds() {
     }
 }
 
-Vector2& Ball::GetPos() {
+Vector2& Ball::getPos() {
     return location;
 }
 
-int Ball::GetRadius() {
+int Ball::getRadius() {
     return radius;
 }
 
-void Ball::Freeze() {
+void Ball::freeze() {
     initial_freeze_time = GetTime();
 }
 
-bool Ball::IsFrozen() {
+bool Ball::isFrozen() {
     return GetTime() - initial_freeze_time < freeze_time;
 }
 
-void Ball::Reset() {
+void Ball::reset() {
     location.x = 500;
     location.y = 400;
     speed = 10;

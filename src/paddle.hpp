@@ -7,14 +7,14 @@ class Paddle {
 public:
     Paddle(float new_x_pos, int new_player_num);
     
-    void Move();
-    void Draw();
-    Rectangle &GetRectangle();
+    void move();
+    void draw();
+    Rectangle &getRectangle();
 
-    int GetScore();
-    void AddPoint();
+    int getScore();
+    void addPoint();
 
-    void Reset();
+    void reset();
 
 private:
     const float width { 15.0 };

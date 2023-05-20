@@ -52,11 +52,11 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
             player_2.Draw();
 
             if (game_status == GameStatus::PLAYING) {
-                ball.Draw();
+                ball.draw();
             }
 
             // draw score
-            text::DrawScore(player_1, player_2);
+            text::drawScore(player_1, player_2);
 
             // draw vertical line down the middle
             DrawLineV({constants::width/2.0,0},
@@ -76,8 +76,8 @@ void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
 
             player_1.Draw();
             player_2.Draw();
-            text::DrawScore(player_1, player_2);
-            text::DrawWinText(game_status);
+            text::drawScore(player_1, player_2);
+            text::drawWinText(game_status);
         EndDrawing();
         
         if (IsKeyPressed(KEY_Y)) {
