@@ -7,12 +7,12 @@
 
 namespace text {
     void drawScore(Paddle& player_1, Paddle& player_2) {
-        DrawText(TextFormat("%i", player_1.GetScore()),
+        DrawText(TextFormat("%i", player_1.getScore()),
                  x_padding, y_padding,
                  score_size, BLUE);
-        int player_2_text_width = MeasureText(TextFormat("%i", player_2.GetScore()),
+        int player_2_text_width = MeasureText(TextFormat("%i", player_2.getScore()),
                 score_size);
-        DrawText(TextFormat("%i", player_2.GetScore()),
+        DrawText(TextFormat("%i", player_2.getScore()),
                  constants::width - player_2_text_width - x_padding, 
                  y_padding,
                  score_size, RED);
