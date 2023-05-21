@@ -7,7 +7,6 @@ namespace constants {
     inline constexpr int points_to_win { 1 };
     const int player_1_x_pos { 25 };
     const int player_2_x_pos { width - 25 };
- 
 };
 
 #endif
