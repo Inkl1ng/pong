@@ -72,14 +72,14 @@ void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
     while (game_status == GameStatus::PLAYER_1_WIN
             || game_status == GameStatus::PLAYER_2_WIN) {
         BeginDrawing();
-            ClearBackground((BLACK));
+            ClearBackground(BLACK);
 
             player_1.draw();
             player_2.draw();
             text::drawScore(player_1, player_2);
             text::drawWinText(game_status);
         EndDrawing();
-        
+
         if (IsKeyPressed(KEY_Y)) {
             game_status = GameStatus::PLAYING;
             player_1.reset();
@@ -112,7 +112,7 @@ int main() {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
-            DrawText("Pong!", 0, 0, 40, WHITE);
+            text::drawTitleText();
         EndDrawing();
 
         // check if the players want to start playing
