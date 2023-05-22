@@ -26,9 +26,12 @@ private:
 
     Vector2 location { 500, 400 };
     float speed { 10 };
+    /// angle in degrees
     float angle { 180 };
     
+    /// how long to freeze the ball (seconds)
     const float freeze_time { 1.5 };
+    /// time the ball was first frozen at (seconds)
     float initial_freeze_time {};
 };
 

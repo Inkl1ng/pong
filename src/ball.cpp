@@ -4,8 +4,10 @@
 #include <cmath>
 #include <array>
 
+/// Move the ball
 void Ball::move() {
-    float radians = angle * 3.14159 / 180;
+    // break velocity vector into x and y components and update location
+    float radians = angle * PI / 180;
     location.x += speed * std::cos(radians);
     location.y += speed * std::sin(radians);
 
@@ -20,12 +22,21 @@ void Ball::move() {
     }
 }
 
+
+/// Draw the ball onto the screen
 void Ball::draw() {
     DrawCircle(location.x, location.y, radius, WHITE);
 }
 
-void Ball::collision(Paddle& target) {
-    Rectangle& r_target_rect { target.getRectangle() };
+/**
+ * Check if the ball has collided with the target paddle. If it has,
+ * then update angle and slightly increase speed
+ * 
+ * @param[in] target_paddle paddle to check collision against
+*/
+void Ball::collision(Paddle& target_paddle) {
+    // use rectangle from paddle to check for collision
+    Rectangle& r_target_rect { target_paddle.getRectangle() };
     bool collided = CheckCollisionCircleRec(location, radius,
             r_target_rect);
 
@@ -33,23 +44,34 @@ void Ball::collision(Paddle& target) {
         // get the distance from the center of the paddle
         float distance_from_center { r_target_rect.y
                 + (r_target_rect.height/2) - location.y };
+        // use distance from center of paddle to calculate new angle,
+        // bounce angles scale with distance from center of paddle up to
+        // max of -+ 40 and min of 0
         float new_angle { (distance_from_center/r_target_rect.height)
-                * 75};
-        
-        bool moving_right { angle < 90 || angle > 270 }; 
-        if (moving_right) {
-            angle = 180 + new_angle;
-        } else {
-            angle = 360 - new_angle;
-        }
+                * 80};
 
+        // update angle
+        // if the ball is moving to the left, then the angle will be
+        // adjusted to move it to the right + new_angle from bounce and
+        // vice versa        
+        (angle < 90 || angle > 270) ? angle = 180 + new_angle
+                : angle = 360 - new_angle;
+
+        // slightly increase speed
         speed *= 1.05;
     } else {
         return;
     }
 }
 
+/**
+ * Check if the ball is out of bounds. If the ball is then the reset the
+ * location, angle, and speed to inital values
+ * 
+ * @return Which side the ball was scored on (1 or 2)
+*/
 int Ball::outOfBounds() {
+    // chcek if the ball is out of bounds
     bool out_of_bounds { location.x < 0 || location.x > 1000 };
     int player_side {}; // which side the ball was on when it was scored
 
@@ -72,22 +94,33 @@ int Ball::outOfBounds() {
     }
 }
 
+/// @return Current position of the ball
 Vector2& Ball::getPos() {
     return location;
 }
 
+/// @return Radius of the ball
 int Ball::getRadius() {
     return radius;
 }
 
+
+/// Freezes the ball, starts a timer for freezing the ball
 void Ball::freeze() {
     initial_freeze_time = GetTime();
 }
 
+/**
+ * Check if the ball has been frozen for enough more than or less than
+ * initial_freeze_time.
+ * 
+ * @return If should be frozen or not
+*/
 bool Ball::isFrozen() {
     return GetTime() - initial_freeze_time < freeze_time;
 }
 
+/// Reset location, speed, and angle to initial values
 void Ball::reset() {
     location.x = 500;
     location.y = 400;
