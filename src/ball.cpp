@@ -68,7 +68,7 @@ void Ball::collision(Paddle& target_paddle) {
  * Check if the ball is out of bounds. If the ball is then the reset the
  * location, angle, and speed to inital values
  * 
- * @return Which side the ball was scored on (1 or 2)
+ * @returns Which side the ball was scored on (1 or 2)
 */
 int Ball::outOfBounds() {
     // chcek if the ball is out of bounds
@@ -94,12 +94,12 @@ int Ball::outOfBounds() {
     }
 }
 
-/// @return Current position of the ball
+/// @returns Current position of the ball
 Vector2& Ball::getPos() {
     return location;
 }
 
-/// @return Radius of the ball
+/// @returns Radius of the ball
 int Ball::getRadius() {
     return radius;
 }
@@ -114,7 +114,7 @@ void Ball::freeze() {
  * Check if the ball has been frozen for enough more than or less than
  * initial_freeze_time.
  * 
- * @return If should be frozen or not
+ * @returns If should be frozen or not
 */
 bool Ball::isFrozen() {
     return GetTime() - initial_freeze_time < freeze_time;
