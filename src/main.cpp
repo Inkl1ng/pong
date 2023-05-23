@@ -28,8 +28,10 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
         // check for a win
         if (player_1.getScore() == constants::points_to_win) {
             game_status = GameStatus::PLAYER_1_WIN;
+            break; // immediately exit game loop
         } else if (player_2.getScore() == constants::points_to_win) {
             game_status = GameStatus::PLAYER_2_WIN;
+            break;
         }
 
         // check for exiting the game loop
