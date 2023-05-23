@@ -37,7 +37,7 @@ void text::drawWinText(GameStatus& game_status) {
              350, win_size, WHITE);
 }
 
-void text::drawTitleText() {
+void text::drawTitleScreen() {
     // measure right side of pong text length
     const int right_width { MeasureText(title_text_right, title_size/2) };
     // draw left side of pong text
@@ -48,7 +48,22 @@ void text::drawTitleText() {
     // measure and draw right side of pong text
     // subtract 18 to maintain correct spacing between letters, random
     // were guessed and checked until the pixel spacing was correct
+    // it might not be pixel perfect but it is close enough
     const int title_right_x { constants::width/2
-            - MeasureText(title_text_right, title_size)/2 + right_width + 18 };
+            - MeasureText(title_text_right, title_size)/2 + right_width + 38 };
     DrawText(title_text_right, title_right_x, title_y, title_size, RED);
+
+    // draw play button
+    const int play_x { constants::width/2
+            - MeasureText(play_text, options_size)/2 };
+    DrawText(play_text, play_x, play_y, options_size, WHITE);
+
+    // draw settings button
+    const int settings_x { constants::width/2
+            - MeasureText(settings_text, options_size)/2 };
+    DrawText(settings_text, settings_x, settings_y, options_size, WHITE);
+
+    const int quit_x { constants::width/2
+            - MeasureText(quit_text, options_size)/2 };
+    DrawText(quit_text, quit_x, quit_y, options_size, WHITE);
 }
