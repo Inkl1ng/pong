@@ -33,8 +33,7 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
         }
 
         // check for exiting the game loop
-        if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
-        {
+        if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose()) {
             game_status = GameStatus::EXIT_GAME;
             break;
         }
@@ -112,7 +111,7 @@ int main() {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
-            text::drawTitleText();
+            text::drawTitleScreen();
         EndDrawing();
 
         // check if the players want to start playing
@@ -135,4 +134,3 @@ int main() {
     CloseWindow();
     return 0;
 }
-
