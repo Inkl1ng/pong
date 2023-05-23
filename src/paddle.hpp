@@ -26,6 +26,8 @@ private:
     int score {};
 
     Rectangle rectangle;
+    // reference to rectangle to reduce memory usage from copying entire
+    // struct
     Rectangle &r_rectangle { rectangle };
 };
 
