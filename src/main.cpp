@@ -3,6 +3,7 @@
 #include "text.hpp"
 #include "constants.hpp"
 #include "types.hpp"
+#include "settings.hpp"
 #include "raylib.h"
 
 void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
@@ -100,14 +101,14 @@ int main() {
     
     // gameStatus gets passed around through a reference so it changes
     // a lot
-    GameStatus gameStatus { GameStatus::PLAYING };
+    GameStatus game_status { GameStatus::PLAYING };
  
     // initialize players
     Paddle player1(constants::player_1_x_pos, 1);
     Paddle player2(constants::player_2_x_pos, 2);
     
     // title screen loop
-    while (gameStatus != GameStatus::EXIT_WINDOW) {
+    while (game_status != GameStatus::EXIT_WINDOW) {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
@@ -116,17 +117,21 @@ int main() {
 
         // check if the players want to start playing
         if (IsKeyPressed(KEY_SPACE)) {
-            gameStatus = GameStatus::PLAYING;
+            game_status = GameStatus::PLAYING;
 
             // enter game
-            while (gameStatus == GameStatus::PLAYING) {
-                mainGame(gameStatus, player1, player2);
-                winScreen(gameStatus, player1, player2);
+            while (game_status == GameStatus::PLAYING) {
+                mainGame(game_status, player1, player2);
+                winScreen(game_status, player1, player2);
             }
         }
         // check if the players want to quit
         if (IsKeyPressed(KEY_Q)) {
-            gameStatus = GameStatus::EXIT_WINDOW;
+            game_status = GameStatus::EXIT_WINDOW;
+        }
+        if (IsKeyPressed(KEY_O)) {
+            game_status = GameStatus::SETTINGS;
+            settings::settingsScreen(game_status);
         }
     }
 
