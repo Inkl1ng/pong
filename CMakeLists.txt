@@ -25,13 +25,23 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
+if (NOT simpleini_POPULATED)
+  FetchContent_Declare(simpleini GIT_REPOSITORY https://github.com/brofield/simpleini.git)
+  FetchContent_MakeAvailable(simpleini)
+  FetchContent_GetProperties(simpleini)
+endif()
+
 # Our Project
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/ball.cpp
     src/paddle.cpp
-    src/text.cpp)
+    src/text.cpp
+    src/settings/settings.cpp)
 
-target_include_directories(Pong PUBLIC "${CMAKE_SOURCE_DIR}/src")
+target_include_directories(Pong PUBLIC
+  "${CMAKE_SOURCE_DIR}/src"
+  "${CMAKE_SOURCE_DIR}/src/settings"
+  "${CMAKE_BINARY_DIR}/_deps/simpleini-src")
     #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
