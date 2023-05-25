@@ -7,6 +7,7 @@ enum class GameStatus {
     PLAYER_2_WIN,
     EXIT_GAME,
     EXIT_WINDOW,
+    SETTINGS,
 };
 
 #endif
