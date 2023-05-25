@@ -7,6 +7,7 @@
 #include "raylib.h"
 
 void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
+    // which side the ball was scored on
     int scored_side {};
     Ball ball;
 
@@ -15,8 +16,7 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
         ball.collision(player_1);
         ball.collision(player_2);
         
-        // scoring
-        // scoredSide is the side that the ball was scored on
+        // scoring and freezing the ball
         scored_side = ball.outOfBounds();
         if (scored_side == 1) {
             player_2.addPoint();
@@ -29,8 +29,10 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
         // check for a win
         if (player_1.getScore() == constants::points_to_win) {
             game_status = GameStatus::PLAYER_1_WIN;
+            break; // immediately exit game loop
         } else if (player_2.getScore() == constants::points_to_win) {
             game_status = GameStatus::PLAYER_2_WIN;
+            break;
         }
 
         // check for exiting the game loop
@@ -50,10 +52,7 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
             // draw objects
             player_1.draw();
             player_2.draw();
-
-            if (game_status == GameStatus::PLAYING) {
-                ball.draw();
-            }
+            ball.draw();
 
             // draw score
             text::drawScore(player_1, player_2);
@@ -64,8 +63,6 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
                       WHITE);
         EndDrawing();
     }
-
-    return;
 }
 
 void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
@@ -80,6 +77,7 @@ void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
             text::drawWinText(game_status);
         EndDrawing();
 
+        // check for inputs to play game or exit
         if (IsKeyPressed(KEY_Y)) {
             game_status = GameStatus::PLAYING;
             player_1.reset();
