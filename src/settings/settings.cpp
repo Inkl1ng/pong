@@ -9,7 +9,7 @@ void settings::settingsScreen(GameStatus &game_status) {
 
             DrawFPS(0, 0);
         
-            if (IsKeyPressed(KEY_Q)) { game_status = GameStatus::EXIT_GAME; }
+            if (IsKeyPressed(KEY_Q)) { game_status = GameStatus::MAIN_MENU; }
         EndDrawing();
     }
 }

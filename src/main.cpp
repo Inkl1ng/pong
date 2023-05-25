@@ -37,7 +37,7 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
 
         // check for exiting the game loop
         if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose()) {
-            game_status = GameStatus::EXIT_GAME;
+            game_status = GameStatus::MAIN_MENU;
             break;
         }
 
@@ -83,7 +83,7 @@ void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
             player_1.reset();
             player_2.reset();
         }
-        if (IsKeyPressed(KEY_N)) { game_status = GameStatus::EXIT_GAME; }
+        if (IsKeyPressed(KEY_N)) { game_status = GameStatus::MAIN_MENU; }
     }
 }
 
@@ -106,7 +106,7 @@ int main() {
     Paddle player2(constants::player_2_x_pos, 2);
     
     // title screen loop
-    while (game_status != GameStatus::EXIT_WINDOW) {
+    while (game_status != GameStatus::EXIT_GAME) {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
@@ -125,7 +125,7 @@ int main() {
         }
         // check if the players want to quit
         if (IsKeyPressed(KEY_Q)) {
-            game_status = GameStatus::EXIT_WINDOW;
+            game_status = GameStatus::EXIT_GAME;
         }
         if (IsKeyPressed(KEY_O)) {
             game_status = GameStatus::SETTINGS;
