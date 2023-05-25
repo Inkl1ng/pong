@@ -55,7 +55,7 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
             ball.draw();
 
             // draw score
-            text::drawScore(player_1, player_2);
+            title_screen::drawScore(player_1, player_2);
 
             // draw vertical line down the middle
             DrawLineV({constants::width/2.0,0},
@@ -73,8 +73,8 @@ void winScreen(GameStatus &game_status, Paddle& player_1, Paddle& player_2) {
 
             player_1.draw();
             player_2.draw();
-            text::drawScore(player_1, player_2);
-            text::drawWinText(game_status);
+            title_screen::drawScore(player_1, player_2);
+            title_screen::drawWinText(game_status);
         EndDrawing();
 
         // check for inputs to play game or exit
@@ -110,7 +110,7 @@ int main() {
         // draw title screen text
         BeginDrawing();
             ClearBackground(BLACK);
-            text::drawTitleScreen();
+            title_screen::drawTitleScreen();
         EndDrawing();
 
         // check if the players want to start playing
