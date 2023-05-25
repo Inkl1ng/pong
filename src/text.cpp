@@ -5,7 +5,7 @@
 #include "types.hpp"
 #include <string>
 
-void title_screen::drawScore(Paddle& player_1, Paddle& player_2) {
+void text::drawScore(Paddle& player_1, Paddle& player_2) {
     DrawText(TextFormat("%i", player_1.getScore()),
             score_x_padding, score_y_padding,
             score_size, BLUE);
@@ -20,7 +20,7 @@ void title_screen::drawScore(Paddle& player_1, Paddle& player_2) {
             score_size, RED);
 }
 
-void title_screen::drawWinText(GameStatus& game_status) {
+void text::drawWinText(GameStatus& game_status) {
     // check which player won and use the right text
     const char* win_text {};
     (game_status == GameStatus::PLAYER_1_WIN) ? win_text = "Player 1 wins!"
@@ -37,7 +37,7 @@ void title_screen::drawWinText(GameStatus& game_status) {
              350, win_size, WHITE);
 }
 
-void title_screen::drawTitleScreen() {
+void text::drawTitleScreen() {
     // measure right side of pong text length
     const int right_width { MeasureText(title_text_right, title_size/2) };
     // draw left side of pong text
@@ -66,8 +66,4 @@ void title_screen::drawTitleScreen() {
     const int quit_x { constants::width/2
             - MeasureText(quit_text, options_size)/2 };
     DrawText(quit_text, quit_x, quit_y, options_size, WHITE);
-}
-
-void title_screen::drawSettingsScreen() {
-    // DrawText()
 }

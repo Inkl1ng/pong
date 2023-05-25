@@ -7,7 +7,7 @@
 #include "constants.hpp"
 #include <string_view>
 
-namespace title_screen {
+namespace text {
     // x distance from score number to boarder
     inline const int score_x_padding { 100 };
     // y distance from score number to boarder
@@ -38,7 +38,6 @@ namespace title_screen {
     void drawScore(Paddle& player_1, Paddle& player_2);
     void drawWinText(GameStatus& game_status);
     void drawTitleScreen();
-    void drawSettingsScreen();
 }
 
 #endif
