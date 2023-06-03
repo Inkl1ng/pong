@@ -129,6 +129,7 @@ int main() {
         }
         if (IsKeyPressed(KEY_O)) {
             game_status = GameStatus::SETTINGS;
+            settings::saveColors({ 0,1,2 }, { 3,4,5 });
             settings::settingsScreen(game_status);
         }
     }
