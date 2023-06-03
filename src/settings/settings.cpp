@@ -3,9 +3,8 @@
 #include "text.hpp"
 #include "constants.hpp"
 #include "raylib.h"
-#include "rini.h"
+#include "ini.h"
 #include <filesystem>
-#include <fstream>
 
 void settings::settingsScreen(GameStatus &game_status) {
     const int header_x = constants::width/2
@@ -14,11 +13,23 @@ void settings::settingsScreen(GameStatus &game_status) {
         BeginDrawing();
             ClearBackground(BLACK);
                 DrawText(header_text, header_x, header_y, header_size, WHITE);
-                // if (checkIniFile()) {
-                    // DrawFPS(0,0);
-                // }
+
 
             if (IsKeyPressed(KEY_Q)) { game_status = GameStatus::MAIN_MENU; }
         EndDrawing();
     }
+}
+
+void settings::saveColors(Color player_1_color, Color player_2_color) {
+    mINI::INIFile colors_ini(settings::colors_path);
+    mINI::INIStructure ini;
+
+    ini["Colors"]["player_1_color_r"] = std::to_string(player_1_color.r);
+    ini["Colors"]["player_1_color_g"] = std::to_string(player_1_color.g);
+    ini["Colors"]["player_1_color_b"] = std::to_string(player_1_color.b);
+    ini["Colors"]["player_2_color_r"] = std::to_string(player_2_color.r);
+    ini["Colors"]["player_2_color_g"] = std::to_string(player_2_color.g);
+    ini["Colors"]["player_2_color_b"] = std::to_string(player_2_color.b);
+
+    colors_ini.write(ini);
 }
