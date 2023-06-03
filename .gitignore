@@ -47,3 +47,6 @@ CMakeSettings.json
 
 # clangd LSP cache
 .cache
+
+# generated .ini files
+src/settings/*.ini
