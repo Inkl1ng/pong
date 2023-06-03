@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Dependencies
+# raylib
 include(FetchContent)
 set(RAYLIB_VERSION 4.5.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
@@ -25,6 +26,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
+# mINI
 FetchContent_Declare(
     mini
     GIT_REPOSITORY https://github.com/pulzed/mINI
