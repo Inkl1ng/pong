@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Dependencies
+include(FetchContent)
 set(RAYLIB_VERSION 4.5.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
 if (NOT raylib_FOUND) # If there's none, fetch and build raylib
-  include(FetchContent)
   FetchContent_Declare(
     raylib
     DOWNLOAD_EXTRACT_TIMESTAMP OFF
@@ -26,12 +26,11 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 FetchContent_Declare(
-    rini
-    GIT_REPOSITORY https://github.com/raysan5/rini
-    GIT_TAG main
+    mini
+    GIT_REPOSITORY https://github.com/pulzed/mINI
 )
-FetchContent_Populate(rini)
-include_directories("${rini_SOURCE_DIR}/src")
+FetchContent_Populate(mini)
+include_directories("${mini_SOURCE_DIR}/src/mini")
 
 # Our Project
 add_executable(${PROJECT_NAME}
