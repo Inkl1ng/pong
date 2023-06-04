@@ -25,7 +25,7 @@ void Ball::move() {
 
 /// Draw the ball onto the screen
 void Ball::draw() {
-    DrawCircle(location.x, location.y, radius, WHITE);
+    DrawCircle(static_cast<int>(location.x), static_cast<int>(location.y), radius, WHITE);
 }
 
 /**
@@ -58,7 +58,7 @@ void Ball::collision(Paddle& target_paddle) {
                 : angle = 360 - new_angle;
 
         // slightly increase speed
-        speed *= 1.05;
+        speed *= 1.05f;
     } else {
         return;
     }
@@ -93,17 +93,6 @@ int Ball::outOfBounds() {
         return 0;
     }
 }
-
-/// @returns Current position of the ball
-Vector2& Ball::getPos() {
-    return location;
-}
-
-/// @returns Radius of the ball
-int Ball::getRadius() {
-    return radius;
-}
-
 
 /// Freezes the ball, starts a timer for freezing the ball
 void Ball::freeze() {

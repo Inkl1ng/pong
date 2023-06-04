@@ -13,9 +13,6 @@ public:
     void collision(Paddle& target);
     int outOfBounds();
 
-    Vector2& getPos();
-    int getRadius();
-
     void freeze();
     bool isFrozen();
 
