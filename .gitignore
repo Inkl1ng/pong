@@ -31,9 +31,10 @@
 *.out
 *.app
 
-# /build/ and /bin/ directories
+# Cmake 
 build/
 bin/
+out/
 
 # lib direcotry
 lib/
