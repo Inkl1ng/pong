@@ -26,10 +26,10 @@ private:
     /// angle in degrees
     float angle { 180 };
     
-    /// how long to freeze the ball (seconds)
-    const float freeze_time { 1.5 };
-    /// time the ball was first frozen at (seconds)
-    float initial_freeze_time {};
+    /// how long to freeze the ball 
+    const double freeze_seconds { 1.5 };
+    /// time the ball was first frozen at
+    double initial_freeze_seconds {};
 };
 
 #endif
