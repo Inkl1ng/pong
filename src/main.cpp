@@ -11,6 +11,11 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
     int scored_side {};
     Ball ball;
 
+    const int score_x_padding { 100 };
+    const int score_y_pos { 100 };
+    const int score_font_size { 100 };
+    int player_2_text_width {};
+
     while (game_status == GameStatus::PLAYING) {
         // check for collision
         ball.collision(player_1);
@@ -25,6 +30,11 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
             player_1.addPoint();
             ball.freeze();
         }
+        // measures width of player 2's score for when it needs to be drawn so
+        // both player 1's and player 2's score texts look like they're the same
+        // distance away from the border of the screen
+        player_2_text_width = MeasureText(TextFormat("%i", player_2.getScore()),
+                score_font_size);
 
         // check for a win
         if (player_1.getScore() == constants::points_to_win) {
@@ -55,7 +65,11 @@ void mainGame(GameStatus& game_status, Paddle& player_1, Paddle& player_2) {
             ball.draw();
 
             // draw score
-            text::drawScore(player_1, player_2);
+            DrawText(TextFormat("%i", player_1.getScore()), score_x_padding,
+                    score_y_pos, score_font_size, BLUE);
+            DrawText(TextFormat("%i", player_2.getScore()), 
+                    constants::width - score_x_padding -  player_2_text_width,
+                    score_y_pos, score_font_size, RED);
 
             // draw vertical line down the middle
             DrawLineV({constants::width/2.0,0},
