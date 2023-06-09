@@ -5,6 +5,12 @@
 #include "types.hpp"
 #include <string>
 
+void text::drawTextCentered(const char* text, int font_size, int y_pos, Color color) {
+    int text_width { MeasureText(text, font_size) };
+
+    DrawText(text, constants::width/2 - text_width/2, y_pos, font_size, color);
+}
+
 void text::drawScore(Paddle& player_1, Paddle& player_2) {
     DrawText(TextFormat("%i", player_1.getScore()),
             score_x_padding, score_y_padding,

@@ -35,6 +35,7 @@ namespace text {
 
     inline const char *replay_text { "Play again? (Y/N)" };
 
+    void drawTextCentered(const char* text, int font_size, int y_pos, Color color=WHITE);
     void drawScore(Paddle& player_1, Paddle& player_2);
     void drawWinText(GameStatus& game_status);
     void drawTitleScreen();
