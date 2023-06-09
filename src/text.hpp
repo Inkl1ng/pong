@@ -14,7 +14,6 @@ namespace text {
     inline const int score_y_padding { 100 };
 
     inline const int score_size { 100 }; 
-    inline const int win_size { 30 };
 
     inline const int title_size { 250 };
     inline const int title_y { 30 };
