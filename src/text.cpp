@@ -27,20 +27,18 @@ void text::drawScore(Paddle& player_1, Paddle& player_2) {
 }
 
 void text::drawWinText(GameStatus& game_status) {
+    const int font_size { 30 };
+    const int win_y_pos { 100 };
+    const int quit_y_pos { 460 };
+    
     // check which player won and use the right text
     const char* win_text {};
     (game_status == GameStatus::PLAYER_1_WIN) ? win_text = "Player 1 wins!"
             : win_text = "Player 2 wins!";
+    const char* replay_text { "Play again? (Y/N)" };
 
-    // draw text for which player won
-    int win_text_width = MeasureText(win_text, win_size);
-    DrawText(win_text, (constants::width/2) - (win_text_width/2), 300,
-             win_size, WHITE);
-   
-    // draw text for replay promt
-    int replay_text_width = MeasureText(replay_text, win_size);
-    DrawText(replay_text, (constants::width/2) - (replay_text_width/2),
-             350, win_size, WHITE);
+    drawTextCentered(win_text, font_size, win_y_pos);
+    drawTextCentered(replay_text, font_size, quit_y_pos);
 }
 
 void text::drawTitleScreen() {
