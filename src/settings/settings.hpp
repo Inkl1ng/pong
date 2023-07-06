@@ -18,6 +18,7 @@ namespace settings {
 
     void settingsScreen(GameStatus &game_status);
     void saveColors(Color player_1_color, Color player_2_color);
+    Color readColor(int playerNumber);
 }
 
 #endif

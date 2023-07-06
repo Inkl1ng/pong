@@ -33,3 +33,22 @@ void settings::saveColors(Color player_1_color, Color player_2_color) {
 
     colors_ini.write(ini);
 }
+
+Color settings::readColor(int playerNumber) {
+    mINI::INIFile colors_ini(settings::colors_path);
+    mINI::INIStructure ini;
+
+    Color color {};
+
+    if (playerNumber == 1) {
+        color.r = std::stoi(ini["Colors"]["player_1_color_r"]);
+        color.g = std::stoi(ini["Colors"]["player_1_color_g"]);
+        color.b = std::stoi(ini["Colors"]["player_1_color_b"]);
+    } else if (playerNumber == 2) {
+        color.r = std::stoi(ini["Colors"]["player_2_color_r"]);
+        color.g = std::stoi(ini["Colors"]["player_2_color_g"]);
+        color.b = std::stoi(ini["Colors"]["player_2_color_b"]);
+    }
+    
+    return color;
+}
