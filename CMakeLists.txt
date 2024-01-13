@@ -15,7 +15,7 @@ add_executable(pong
 )
 
 # copy data directory to binary directory so the executable will be able to find it
-# file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 # message("data direcotry copied to binary direcotry")
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
