@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(pong-SFML LANGUAGES CXX)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 # project
 add_executable(pong
     src/main.cpp
