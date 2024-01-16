@@ -18,6 +18,9 @@ add_executable(pong
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 # message("data direcotry copied to binary direcotry")
 
+# for clangd
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 # dependencies
