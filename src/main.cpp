@@ -3,7 +3,6 @@
 #include "util/Game_mode.hpp"
 #include "Main_menu.hpp"
 #include "Game.hpp"
-#include "Paddle.hpp"
 
 int main()
 {
